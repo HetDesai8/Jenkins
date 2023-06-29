@@ -1,10 +1,14 @@
 pipeline {
   agent any
+
+  tools {
+  terraform 'Terraform'
+    }
   
   stages {
     stage('Git Checkout') {
       steps {
-        git branch: 'prod', url: 'https://github.com/HetDesai8/Jenkins.git'
+        git branch: 'Prod', url: 'https://github.com/HetDesai8/Jenkins.git'
       }
     }
     
