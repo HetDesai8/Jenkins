@@ -1,33 +1,31 @@
-pipeline {
-  agent any
-
-  tools {
-  terraform 'Terraform'
-    }
-  
-  stages {
-    stage('Git Checkout') {
-      steps {
-        git branch: 'Prod', url: 'https://github.com/HetDesai8/Jenkins.git'
-      }
+pipeline{
+    agent any
+    
+    tools{
+        terraform 'Terraform'
     }
     
-    stage('Terraform Init') {
-      steps {
-        sh 'terraform init'
-      }
+    stages{
+        stage('Git Checkout'){
+            steps{
+                git branch: 'Prod', url: 'https://github.com/HetDesai8/Jenkins.git'
+            }
+        }
+            
+        stage('Terraform init'){
+            steps{
+                sh 'terraform init'
+            }
+        }
+        stage('Terraform plan'){
+            steps{
+                sh 'terraform plan'
+            }
+        }
+        stage('Terraform apply'){
+            steps{
+                sh 'terraform apply --auto-approve'
+            }
+        }
     }
-    
-    stage('Terraform Plan') {
-      steps {
-        sh 'terraform plan'
-      }
-    }
-    
-    stage('Terraform Apply') {
-      steps {
-        sh '''terraform apply --auto-approve'''
-      }
-    }
-  }
 }
