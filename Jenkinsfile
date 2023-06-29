@@ -19,12 +19,13 @@ pipeline{
         }
         stage('Terraform plan'){
             steps{
-                sh 'terraform plan'
+                sh 'terraform plan -out=tfplan'
             }
         }
         stage('Terraform apply'){
             steps{
-                sh 'terraform apply --auto-approve'
+                input message: 'Deploy infrastructure?', ok: 'Deploy'
+                sh 'terraform apply tfplan'
             }
         }
     }
