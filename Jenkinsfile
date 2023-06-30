@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('Git Checkout'){
             steps{
-                git branch: 'Prod', url: 'https://github.com/HetDesai8/Jenkins.git'
+                git branch: 'Dev', url: 'https://github.com/HetDesai8/Jenkins.git'
             }
         }
             
@@ -19,13 +19,12 @@ pipeline{
         }
         stage('Terraform plan'){
             steps{
-                sh 'terraform plan -out=tfplan'
+                sh 'terraform plan'
             }
         }
         stage('Terraform apply'){
             steps{
-                input message: 'Deploy infrastructure?', ok: 'Deploy'
-                sh 'terraform apply tfplan'
+                sh 'terraform apply --auto-approve'
             }
         }
     }

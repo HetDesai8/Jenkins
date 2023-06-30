@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg" {
-  name        = "prod-sg"
+  name        = "dev-sg"
   vpc_id      = module.vpc.vpc_id
 
 
@@ -26,6 +26,6 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = "prod-security-group"
+    Name = "dev-security-group"
   }
 }
