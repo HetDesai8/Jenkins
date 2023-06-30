@@ -2,7 +2,7 @@ module "ec2_instance" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   count = 2
 
-  name = "prod-instance-${count.index+1}"
+  name = "dev-instance-${count.index+1}"
 
   ami = "ami-05e411cf591b5c9f6"
   instance_type          = "t2.micro"
@@ -19,7 +19,7 @@ module "ec2_instance" {
 
 
   tags = {
-    Name   = "prod-${count.index+1}"
+    Name   = "dev-${count.index+1}"
     Owner = "desaihet8@gmail.com"
   }
 }
